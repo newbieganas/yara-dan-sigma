@@ -1,0 +1,22 @@
+title: Malware Detection
+id: 5fe6a618-c510-40bb-b94b-47db34f4e026
+status: experimental
+description: Detects if a three specific file has been opened or running in the windows system
+references:
+    - https://medium.com/@Architekt.exe/writing-your-first-sigma-rule-5ed783c87570
+    - Noctra Lupra Community
+author: Raja x NewbieGanas
+date: 2025-07-24
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        Hashes|contains:
+        - 'sha256=58898bd42c5bd3bf9b1389f0eee5b39cd59180e8370eb9ea838a0b327bd6fe47' # Lab01-01.exe
+        - 'sha256=f50e42c8dfaab649bde0398867e930b86c2a599e8db83b8260393082268f2dba' # Lab01-01.dll
+        - 'sha256=c876a332d7dd8da331cb8eee7ab7bf32752834d4b2b54eaa362674a2a48f64a6' # Lab01-02.bin
+    condition: selection
+falsepositives:
+    - hash value of the file is different
+level: high
